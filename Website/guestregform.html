@@ -1,0 +1,186 @@
+<html>
+    <head>
+        <title>Ruchir Vani></title>
+       <link rel="stylesheet" type="text/css" href="Ruchir.css">
+       <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+         <script type="text/javascript" >
+            $(document).ready(function(){
+                    $('#getcomments').hide();
+                     $('#comments').click(function(){
+                         
+                       $.ajax({
+                            url:'guestreg.php',
+                            type:'POST',
+                            data:{
+                                act:"getcommnts"
+                            },
+                            success:function(data){
+                                $('#getcomments').html(data);
+                                $('#getcomments').show();
+                                //$('#main_desc   ').css("height","auto");
+                            }
+                        })
+
+
+                   })
+                $('.Errormsg').hide();
+                $('#submit').click(function(){
+                   $('.Errormsg').hide();
+                   var noregx = /^[a-zA-Z\s]+$/g;
+                   var emlregx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+                   var bool = 0;
+                  if( !noregx.test($('#reg_fname').val()) ){
+                        $($('.Errormsg')[0]).show();
+                       bool = 1;
+                   }
+                    if( !(/^[a-zA-z]+$/g.test($('#reg_lname').val())) ){
+                       $($('.Errormsg')[1]).show();
+                       bool = 1;
+                   }
+                   if( !emlregx.test($('#reg_email').val()) ){
+                       $($('.Errormsg')[2]).show();
+                       bool = 1;
+                   }
+                   if(bool)
+                       return false;
+                   
+                                      
+                    $.ajax({
+                            url:'guestreg.php',
+                            type:'POST',
+   
+                            data:{
+                                act:"reg_usr",
+                                fname:$('#reg_fname').val(),
+                                lname:$('#reg_lname').val(),
+                                email:$('#reg_email').val(),
+                                reg:1,
+                                comnts:$('#reg_comments').val()
+                            },
+
+                            success:function(data){
+                                switch(data){
+                                    case "0":
+                                        var msg = 'Please try again.'
+                                        $('#msgdisplaytousr').html(msg)
+                                        break;
+                                    case "1":
+//                                        $('#guestreg_form').hide();
+                                        var msg = 'Registration link has been sent to your mail.'
+                                        $('#msgdisplaytousr').html(msg)
+                                        $('#msgdisplaytousr')
+                                        break;
+                                    case "2":
+                                         var msg = 'An email has already been sent to you for registration.';
+                                         $('#msgdisplaytousr').html(msg)
+                                         break;
+                                    case "3":
+                                         var msg = 'This email has been already registered with us.';
+                                         $('#msgdisplaytousr').html(msg)
+                                         break;
+                                    case "4":
+//                                        $('#guestreg_form').hide();
+                                         var msg = 'Your comments have been succesfully saved.<br>';
+                                         $('#msgdisplaytousr').html(msg)
+//                                         $('#msgdisplaytousr').css("margin-top",'25px')
+                                         //$('#main_desc').css('height','auto')
+                                         break;
+                                
+                                }
+                            }
+                        })
+
+                })  
+            
+            
+           
+            
+            })
+             
+         </script>
+    </head>
+<body class="gardiantbck">
+    <header class="gradianthead">
+
+
+    <span class="Title1">Ruchir Vani</span>
+</header>
+
+<nav  class="navigation_bank gradiantnav" >
+
+    <a href="index.html"><b>Home</b></a></br></br>
+<a href="Projects.html"><b>Projects</b></a></br></br>
+<a href="About_me.html"><b>About me</b></a></br></br>
+<a target="_blank" href="Resume.pdf"><b>Resume</b></a></br></br>
+<a href="Contact.html"><b>Contacts</b></a></br></br>
+
+</nav>
+    <section>
+<div class="place_holder">
+    <div class="contentabt">
+    <form action="guestreg.php" method="POST" id="guestreg_form" autocomplete = "on">
+                    <table  >
+                        <tbody>
+                            <tr>
+                                <td style="color:whitesmoke">First Name :</td>
+                                <td><input type="text" id="reg_fname" ></td>
+                                <td><div class="Errormsg" >Do not enter special character or numbers.</div></td>
+                            </tr>
+                            <tr>
+                                <td style="color:whitesmoke">Last Name :</td>
+                                <td><input type="text" id="reg_lname" ></td>
+                                <td><div class="Errormsg"  >Do not enter special character or numbers.</div></td>
+                            </tr>
+                            <tr>
+                                <td style="color:whitesmoke">Email :</td>
+                                <td><input type="text" id="reg_email" ></td>
+                                <td><div class="Errormsg"  >Enter a valid email address.</div></td>
+                            </tr>
+                            <tr>
+                                <td style="color:whitesmoke">Comments</td>
+                                <td><textarea id="reg_comments" ></textarea></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td  style=" border: 1px ;font-size: 15px;color:whitesmoke" id="msgdisplaytousr">
+                                    
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <button id="submit" type="Button">Submit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <button id="comments" type="Button">Get comments</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </form>
+    <div style="color:white; font-size:20px"> Comments</div>
+                <div id="getcomments" class="commentsarea" style="color:white"></div>
+    </div>
+</div>
+</section>
+       <aside class="gardiantsec">
+        <ul class="nodec">
+            <li>
+                <a href="https://www.facebook.com/ruchir.vani"><img src="facebook_logo.png" height="40" width="30" ></a>
+            </li>
+            <li>
+                <a href="https://twitter.com/RuchirVanii"><image src="logo_twitter.png" height="40" width="30"></a>
+            </li>
+            <li>
+                <a href="https://plus.google.com/u/0/104826617182050387868/posts?hl=en"><image src="GooglePlus-Logo-02.png" height="40" width="30"></a>
+            </li>
+        </ul>
+    </aside>
+
+<footer>Made by :Ruchir vani</footer> 
+    </body>
+</html>

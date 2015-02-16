@@ -1,0 +1,166 @@
+<?php
+error_reporting(0);
+//include_once 'sqlcon.php';
+if($_POST['act'] == "getcommnts"){
+       // $idqury1="SELECT u.First_name,u.Last_name,c.comments FROM comments c,userdetails u WHERE u.ID = c.ID";
+	$idqury1="Select * from commnets";
+        //$id1= mysql_fetch_assoc(mysql_query($idqury1,$con));
+        //global $con;
+        $con=mysqli_connect("weblab.cs.uml.edu","rvani","rv6861","rvani");
+        $id1=mysql_query($idqury1,$con);
+        $k=0;
+        while ($row = mysql_fetch_assoc($id1) ) {
+            $commnts[$k]['fn'] = $row['First_name'];
+            $commnts[$k]['ln'] = $row['Last_name'];
+            $commnts[$k]['cm'] = $row['comments'];
+            $k++;
+        }
+}
+constructComments($commnts);
+//        
+//}
+function constructComments($cmnts){
+                $data = "<div ><b></b><br><br>";
+                foreach ($cmnts as $cm){
+                $cm['cm'] = trim($cm['cm'], '"');
+      
+                if(strlen($cm['cm']) != 0 ){
+//            var_dump($cm);exit;
+                $data .= "<div><span class='comments_name'>{$cm['fn']} {$cm['ln']}</span><br><br>";
+                $data .= "- &nbsp;<span>{$cm['cm']}<span><br><br></div><br><br>";
+                }
+        }
+        echo $data."</div>";
+    }
+//      //  $fcont = file_get_contents("Recordsfinal.csv");
+//        //$fcont = explode("\n", $fcont);
+//        //return true;
+//        foreach($fcont as $k => $row){
+//            $cols = explode(",", $row);
+//            $commnts[$k]['fn'] = $cols[0];
+//            $commnts[$k]['ln'] = $cols[1];
+//            $commnts[$k]['cm'] = $cols[3];
+//            //var_dump($fcont);
+//        }
+//        constructComments($commnts);
+//        
+//}
+//function constructComments($cmnts){
+//                $data = "<div ><b>Comments</b><br><br>";
+//                foreach ($cmnts as $cm){
+//                $cm['cm'] = trim($cm['cm'], '"');
+//      
+//                if(strlen($cm['cm']) != 0 ){
+////            var_dump($cm);exit;
+//                $data .= "<div class='cmnts'><span class='name'>{$cm['fn']} {$cm['ln']}</span><br><br>";
+//                $data .= "- &nbsp;{$cm['cm']}<br><br></div><br><br>";
+//                }
+//        }
+//        echo $data."</div>";
+//    }
+//        return;
+        ///
+$fname = $_POST['reg_fname'];
+$lname = $_POST['reg_lname'];
+$email = $_POST['reg_email'];
+$comment= $_POST['reg_comments'];
+//$file = 'Recordsfinal.csv';
+//file_put_contents($file,$fname.",".$lname.",".$email."\n" ,FILE_APPEND);
+       // //$fcont = file_get_contents("Recordsfinal.csv");
+       // //$rows = explode("\n", $fcont);
+        //count($fcont);
+        //var_dump($rows);
+        //var_dump($email);
+        //echo('bye');
+        //global $con;
+        $con=mysqli_connect("weblab.cs.uml.edu","rvani","rv6861","rvani");
+       
+        $idqury="select register from userdetails where email_address='$email'";
+        $id= mysql_fetch_assoc(mysql_query($idqury,$con));
+        if($id['register']=="1")
+        {
+            $regal=1;
+        }
+        else {
+            $regal=0;
+        }
+        
+//        foreach($rows as $row)
+//            {
+//                $cols = explode(",", $row);
+//        //        var_dump($row); 
+////                var_dump($cols[2]);
+////                var_dump($email);C
+////                exit;
+//                
+//                
+//                if($cols[2] == $email)
+//                {
+//                        $regal=1;
+//                    //var_dump($cols[2]);
+//                    var_dump($email);
+//                        
+//                        break;
+//                }
+//                else{
+//                    $regal=0;
+////                                       break;
+//                }
+//               
+//            }
+           // var_dump($regal);
+            //echo "</ br></ br>";
+                
+if ($regal==0)
+{
+    echo 'E-mail has been sent. To conform the registration click on link in e-mail.';
+                    $link = "http://www.cs.uml.edu/~rvani/hw3/confirm_reg.html";
+                    $to      = $email;
+                    $subject = 'Registration link';
+                    $message = "Hello, ".$fname." ".$lname."\n"." Click on link to conform your registering.:".$link." "."\n\n"."Thank you\n"."Ruchir Vani";
+                    $headers = 'From: ruchir_vani@student.uml.edu' . "\r\n" .
+                    'Reply-To: ruchir_vani@student.uml.edu' . "\r\n" ;
+                    mail($to, $subject, $message, $headers);
+                    //
+                    //
+                   // $str = $fname.",".$lname.",".$email.",".$comment."\n";
+                    //file_put_contents($file,$str,FILE_APPEND);
+                    //global $con;
+                   // var_dump($con);
+                    $con=mysqli_connect("weblab.cs.uml.edu","rvani","rv6861","rvani");
+       
+                    $insert="insert into userdetails (First_name,Last_name,email_address,register) values ('$fname','$lname','$email','1')";
+                    $rec=  mysql_query($insert, $con);
+                    $idqury="select ID from userdetails where email_address='$email'";
+                    $id= mysql_fetch_assoc(mysql_query($idqury,$con));
+                    $insert1="insert into comments (ID,Comments) values ({$id['ID']},'$comment')";
+                    $rec1=  mysql_query($insert1, $con);
+                    //var_dump($rec);
+                      
+}
+elseif ($regal==1) {
+echo' already registered';
+//echo '</br></br>';
+//echo 'Comment has been posted';
+                    //global $con;
+                    $con=mysqli_connect("weblab.cs.uml.edu","rvani","rv6861","rvani");
+       
+                    $idqury="select ID from userdetails where email_address='$email'";
+                    $id= mysql_fetch_assoc(mysql_query($idqury,$con));
+                    $insert1="insert into comments (ID,Comments) values ({$id['ID']},'$comment')";
+                    $rec1=  mysql_query($insert1, $con);
+}
+else
+{
+    
+}
+////
+///
+    
+    
+
+
+    
+
+        
+?>

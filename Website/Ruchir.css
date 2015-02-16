@@ -1,0 +1,199 @@
+
+
+root { 
+    display: block;
+}
+
+  .heading1{
+      background-color:black;
+      width:1350px ;
+      font-family:AR CENA;
+      color:whitesmoke;
+      border-bottom: 1px white solid;
+  }
+  .menu1
+  {
+      width:15%;
+      height:100%;
+      vertical-align:top;  
+      border-right:1px white solid;
+      color:#FF4000;
+      float:left;
+  }
+ 
+  .contentabt
+  {
+       color:whitesmoke;
+       vertical-align:top;
+       font-size: 20px;
+       margin: 10px;
+       width:50em;
+  }
+  .tablestyle
+  {
+      color: whitesmoke; 
+      margin-top:0px; 
+      border: 1px; 
+      border-color:#ffffff;
+  }
+  .indexcontent1
+  {
+  font-size:20px;
+  color: white; 
+  margin-right: 12%;
+  margin-top: 10%; 
+  vertical-align: top;
+  margin-left:35%;
+  width:30em;
+  
+  }
+  .image-index1
+  {
+    width:300px;
+    float:left;
+    border: 1px whitesmoke  solid;
+    height:400px;
+    
+   
+  }
+  .img
+  {
+      width:250px;
+      height:300px;
+      float:left;
+      border: 1px whitesmoke  solid;
+  }
+  a:hover {
+   
+    color:white;
+    font-size:50px;
+    }
+    a:link
+    {
+        color:white;
+        font-size:15px;
+        text-decoration: none;
+    }
+a:visited {
+
+   color:white;
+   text-decoration: none;
+}
+.Errormsg{
+    font-size: 12px;
+    color: white;
+}
+.guestreg{
+    height:10px;
+    width:120px;
+    color:#6F6FE0;
+    float: right;
+    margin-top: 0px;
+    margin-right: 150px;
+}
+.calc{
+    height:10px;
+    width:120px;
+    color:#6F6FE0;
+    float: right;
+    margin-top: 0px;
+    margin-right: 50px;
+}
+.formcenter{
+    alignment-adjust: central;
+}
+header
+{
+    width:100%;
+    height:102px;         
+/*    border-bottom: 1px white solid;*/
+   text-align: center;
+   color:#F8F2E6;
+}
+.Title1
+{
+    text-align: center;
+    font-size: 50px;
+    font-family:AR CENA;
+    color:#F77E0E;
+}
+.place_holder
+{
+    width:79%;
+    height:500px;
+    vertical-align:top;
+    float:left;
+}
+footer
+{
+    width:100%;
+    height:7%;
+/*    /border-top: 1px white solid;*/
+    float:right;
+    color:white;
+    font-size: 15px;
+    text-align:right;
+}
+.navigation_bank
+{
+ width:10%;
+ height:520px;
+ vertical-align:top;  
+/* border-right:1px white solid;*/
+ color:#FF4000;
+ float:left;
+ font-size:30px; 
+}
+aside
+{
+    width:10%;
+    height:520px;
+    color:#FF4000;
+    float:right;
+    margin-right: 0px;
+/*    border-left: 1px white solid;*/
+      text-decoration: none;
+}
+.commentsarea
+{
+    width:600px;
+    height:200px;
+    overflow-y: scroll;
+    color:white;
+    border: 1px solid whitesmoke;
+}
+.comments_name{
+    color:white;
+    font-size: 20px;
+    font-family:AR CENA; 
+}
+.gradiantnav
+{
+    background:-webkit- linear-gradient(to bottom,#1F2427,#4E6168);
+    background:-moz- linear-gradient(to bottom,#1F2427,#4E6168);
+    background: linear-gradient(to bottom,#1F2427,#4E6168);
+    background: -ms- linear-gradient(to bottom,#1F2427,#4E6168);
+/*    background: liner-gradient( #4E6168, #1F2427 );*/
+}
+.gradianthead
+{
+    background: -webkit-linear-gradient(to bottom, #9AAEB7,white 15%, #9AAEB7 );                                
+            background: -moz-linear-gradient(to bottom, #9AAEB7,white 15%, #9AAEB7 ); 
+            background: linear-gradient(to bottom,#9AAEB7 ,white 50%, #9AAEB7  );
+}
+.gardiantsec
+{
+        background: -webkit-linear-gradient(to bottom,#1A2020,#273133);                                
+        background: -moz-linear-gradient(to bottom,#1A2020,#273133);
+        background: linear-gradient(to bottom,#1A2020,#273133);
+}
+.gardiantbck
+{
+        background: -webkit-linear-gradient(to bottom,#313C40,#1D1C1A);                                
+        background: -moz-linear-gradient(to bottom,#313C40,#1D1C1A);
+        background: linear-gradient(to bottom,#313C40,#1D1C1A);
+}
+.nodec{
+    text-decoration: none;
+    list-style: none;
+}
